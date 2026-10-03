@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Privacy – Tenvy</title>
+<meta name="description" content="How Tenvy handles your data: no account, no analytics, no ads. Your provider login stays on your PC.">
+<link rel="icon" href="assets/icon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root { --bg: #0a0a0a; --text: #f5f5f5; --muted: #a3a3a3; --faint: #737373; --gold: #d4b47c; --line: #262626; }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--text); font: 16px/1.7 Inter, system-ui, "Segoe UI", sans-serif; -webkit-font-smoothing: antialiased; }
+  a { color: var(--gold); }
+  header { border-bottom: 1px solid rgba(255,255,255,.05); }
+  header .wrap { display: flex; align-items: center; height: 64px; }
+  .brand { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 18px; color: var(--text); text-decoration: none; }
+  .brand img { width: 30px; height: 30px; border-radius: 8px; }
+  .wrap { max-width: 760px; margin: 0 auto; padding: 0 24px; }
+  main { padding: 64px 0 96px; }
+  h1 { font-size: clamp(32px, 5vw, 44px); line-height: 1.1; letter-spacing: -0.025em; margin: 0; }
+  .date { color: var(--faint); font-size: 14px; margin-top: 10px; }
+  .summary { margin: 36px 0; padding: 22px 24px; border-radius: 14px; background: #151515; border: 1px solid rgba(212,180,124,.2); }
+  .summary ul { margin: 0; padding-left: 20px; }
+  h2 { font-size: 20px; margin: 44px 0 8px; letter-spacing: -0.01em; }
+  p, li { color: #d4d4d4; }
+  li { margin: 6px 0; }
+  code { font-size: 14px; background: #181818; border: 1px solid var(--line); border-radius: 6px; padding: 1px 6px; color: #e5e5e5; }
+  footer { border-top: 1px solid #1a1a1a; padding: 32px 0 48px; color: var(--faint); font-size: 14px; }
+</style>
+</head>
+<body>
+<header><div class="wrap"><a class="brand" href="./"><img src="assets/icon.svg" alt="">Tenvy</a></div></header>
+<main>
+  <div class="wrap">
+    <h1>Privacy</h1>
+    <div class="date">Last updated 3 October 2026</div>
+
+    <div class="summary">
+      <ul>
+        <li>Tenvy has no accounts, no analytics, no tracking and no ads.</li>
+        <li>Your provider login, channels and history are stored only on your PC.</li>
+        <li>Tenvy only talks to your IPTV provider and to this website (for updates and settings).</li>
+      </ul>
+    </div>
+
+    <h2>What Tenvy stores on your PC</h2>
+    <p>Everything Tenvy keeps is stored locally in <code>%APPDATA%\app.tenvy.player</code> and in the app's own browser storage on your PC:</p>
+    <ul>
+      <li>the server addresses, usernames and passwords of the providers you add;</li>
+      <li>channel, film and series lists, the programme guide and artwork details;</li>
+      <li>favorites, watch history and resume positions, reminders and preferences;</li>
+      <li>log files for troubleshooting, with logins and passwords removed.</li>
+    </ul>
+    <p>None of this is sent to us. We have no copy of it and cannot see it.</p>
+
+    <h2>Who Tenvy connects to</h2>
+    <ul>
+      <li><b>Your IPTV provider</b>, to load playlists, the guide, artwork and the streams you play. Your provider's own privacy policy applies to that.</li>
+      <li><b>This website</b> (hosted by GitHub), to check for updates and read a small settings file — for example where the "Support Tenvy" link points. Like any web request, these reveal your IP address and the Tenvy version to GitHub. They contain nothing about you or what you watch. GitHub's <a href="https://docs.github.com/site-policy/privacy-policies/github-general-privacy-statement">privacy statement</a> applies.</li>
+    </ul>
+    <p>Opening a trailer or the support link opens your web browser, where that website's own policy applies.</p>
+
+    <h2>Notifications</h2>
+    <p>Reminders are shown as Windows notifications, created on your PC. Nothing is sent anywhere.</p>
+
+    <h2>This website</h2>
+    <p>This site is hosted on GitHub Pages and uses fonts from Google Fonts. It sets no cookies of its own and has no analytics. GitHub and Google may process technical data such as IP addresses to deliver the pages.</p>
+
+    <h2>Removing your data</h2>
+    <p>Remove a provider in Settings to delete its lists and history. To remove everything, uninstall Tenvy and delete the <code>%APPDATA%\app.tenvy.player</code> folder.</p>
+
+    <h2>Changes and contact</h2>
+    <p>If this policy changes, the new version is published on this page with a new date. Questions: <a href="https://github.com/quph4/tenvy-releases/issues">github.com/quph4/tenvy-releases/issues</a>.</p>
+  </div>
+</main>
+<footer><div class="wrap">© 2026 Tenvy · <a href="./">Home</a></div></footer>
+</body>
+</html>
