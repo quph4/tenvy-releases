@@ -97,6 +97,8 @@
     box-shadow: 0 40px 120px -20px rgba(0,0,0,.8), 0 0 0 1px rgba(0,0,0,.6), 0 -1px 0 rgba(212,180,124,.25) inset;
     background: #000;
   }
+  .shot.video { margin-top: 40px; }
+  .shot video { display: block; width: 100%; height: auto; background: #000; }
   .shot .bar { display: flex; gap: 7px; padding: 11px 14px; background: #141414; border-bottom: 1px solid #1f1f1f; }
   .shot .bar i { width: 11px; height: 11px; border-radius: 50%; background: #2c2c2c; }
 
@@ -176,6 +178,7 @@
   <div class="wrap">
     <a class="brand" href="#"><img src="assets/icon.svg" alt="">Tenvy</a>
     <nav class="nav-links">
+      <a href="#demo">Demo</a>
       <a href="#features">Features</a>
       <a href="#library">Library</a>
       <a href="#free">Free</a>
@@ -197,7 +200,10 @@
           <svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 5.5 10.5 4.4v7.1H3V5.5Zm0 13 7.5 1.1v-7H3v5.9Zm8.5 1.3L21 21.2V12.6h-9.5v7.2Zm0-15.6v7.3H21V2.8l-9.5 1.4Z"/></svg>
           <span class="js-download-label">Download for Windows</span>
         </a>
-        <a class="btn btn-ghost" href="#features">See what it does</a>
+        <a class="btn btn-ghost" href="#demo">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l11-6.5z"/></svg>
+          Watch the demo
+        </a>
       </div>
       <p class="cta-note js-download-note">Windows 10 and 11 · No admin rights needed · Updates itself</p>
 
@@ -207,6 +213,19 @@
       </div>
     </div>
   </div>
+
+  <section id="demo" style="padding-bottom:0">
+    <div class="wrap" style="text-align:center">
+      <div class="kicker">See it in action</div>
+      <h2>Tenvy in under a minute.</h2>
+      <div class="shot video">
+        <video controls playsinline preload="none" poster="assets/demo-poster.webp" width="1920" height="1080">
+          <source src="assets/tenvy-demo.mp4" type="video/mp4">
+        </video>
+      </div>
+      <p class="cta-note">Shown with made-up channels and films. Tenvy doesn't include any content.</p>
+    </div>
+  </section>
 
   <section id="features">
     <div class="wrap">
