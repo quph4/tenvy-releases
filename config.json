@@ -1,0 +1,6 @@
+{
+  "model": "free",
+  "support": null,
+  "supportPrompt": { "afterDays": 7, "everyDays": 45 },
+  "announcements": []
+}

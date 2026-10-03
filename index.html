@@ -1,0 +1,408 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tenvy – IPTV Player for Windows</title>
+<meta name="description" content="Tenvy is a fast, modern IPTV player for Windows. Live TV with a full programme guide and catch-up, movies and series with artwork, instant search and reminders — for the IPTV subscription you already have. Free.">
+<meta property="og:title" content="Tenvy – IPTV Player for Windows">
+<meta property="og:description" content="Your IPTV, beautifully organised. Live TV, guide, catch-up, movies and series — free for Windows.">
+<meta property="og:image" content="https://quph4.github.io/tenvy-releases/assets/og.png">
+<meta property="og:type" content="website">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="assets/icon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0a0a0a;
+    --bg-2: #111111;
+    --panel: #161616;
+    --line: #262626;
+    --text: #f5f5f5;
+    --muted: #a3a3a3;
+    --faint: #737373;
+    --gold: #d4b47c;
+    --gold-hi: #e6cfa2;
+    --gold-ink: #0a0a0a;
+  }
+  * { box-sizing: border-box; }
+  [hidden] { display: none !important; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font: 16px/1.6 Inter, system-ui, -apple-system, "Segoe UI", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  a { color: inherit; }
+  img { max-width: 100%; height: auto; display: block; }
+  .wrap { max-width: 1160px; margin: 0 auto; padding: 0 24px; }
+
+  /* nav */
+  header.nav {
+    position: sticky; top: 0; z-index: 10;
+    background: rgba(10,10,10,.75);
+    backdrop-filter: blur(14px);
+    border-bottom: 1px solid rgba(255,255,255,.05);
+  }
+  header.nav .wrap { display: flex; align-items: center; gap: 28px; height: 64px; }
+  .brand { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 18px; text-decoration: none; }
+  .brand img { width: 30px; height: 30px; border-radius: 8px; }
+  .nav-links { display: flex; gap: 22px; margin-left: auto; font-size: 14px; }
+  .nav-links a { color: var(--muted); text-decoration: none; }
+  .nav-links a:hover { color: var(--text); }
+
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+    height: 48px; padding: 0 22px; border-radius: 12px;
+    font-weight: 600; font-size: 15px; text-decoration: none; white-space: nowrap;
+    transition: background .15s, border-color .15s, transform .15s;
+  }
+  .btn-gold { background: var(--gold); color: var(--gold-ink); }
+  .btn-gold:hover { background: var(--gold-hi); transform: translateY(-1px); }
+  .btn-ghost { border: 1px solid #333; color: var(--text); }
+  .btn-ghost:hover { border-color: #555; }
+  .btn-sm { height: 36px; padding: 0 14px; border-radius: 9px; font-size: 14px; }
+  .btn svg { width: 18px; height: 18px; }
+
+  /* hero */
+  .hero { position: relative; overflow: hidden; padding: 96px 0 40px; text-align: center; }
+  .glow {
+    position: absolute; left: 50%; top: -220px; width: 1100px; height: 700px; transform: translateX(-50%);
+    background: radial-gradient(closest-side, rgba(212,180,124,.16), transparent 70%);
+    pointer-events: none;
+  }
+  .eyebrow {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 6px 14px; border-radius: 999px; border: 1px solid rgba(212,180,124,.25);
+    color: var(--gold-hi); font-size: 13px; font-weight: 500; background: rgba(212,180,124,.06);
+  }
+  h1 {
+    margin: 22px auto 0; max-width: 820px;
+    font-size: clamp(40px, 6.4vw, 76px); line-height: 1.04; letter-spacing: -0.035em; font-weight: 700;
+  }
+  h1 em { font-style: normal; color: var(--gold); }
+  .lede { margin: 22px auto 0; max-width: 640px; color: var(--muted); font-size: clamp(17px, 2vw, 19px); }
+  .cta { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; margin-top: 34px; }
+  .cta-note { margin-top: 14px; color: var(--faint); font-size: 13px; }
+
+  .shot {
+    position: relative; margin: 64px auto 0; max-width: 1120px;
+    border-radius: 16px; overflow: hidden;
+    border: 1px solid rgba(255,255,255,.08);
+    box-shadow: 0 40px 120px -20px rgba(0,0,0,.8), 0 0 0 1px rgba(0,0,0,.6), 0 -1px 0 rgba(212,180,124,.25) inset;
+    background: #000;
+  }
+  .shot .bar { display: flex; gap: 7px; padding: 11px 14px; background: #141414; border-bottom: 1px solid #1f1f1f; }
+  .shot .bar i { width: 11px; height: 11px; border-radius: 50%; background: #2c2c2c; }
+
+  /* sections */
+  section { padding: 110px 0; }
+  .kicker { color: var(--gold); font-size: 13px; font-weight: 600; letter-spacing: .14em; text-transform: uppercase; }
+  h2 { margin: 12px 0 0; font-size: clamp(30px, 4vw, 44px); line-height: 1.1; letter-spacing: -0.025em; font-weight: 700; }
+  .sub { color: var(--muted); max-width: 620px; margin-top: 16px; font-size: 17px; }
+
+  .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 52px; }
+  .card {
+    padding: 26px; border-radius: 16px; background: var(--panel); border: 1px solid #1f1f1f;
+  }
+  .card .ic {
+    width: 40px; height: 40px; border-radius: 11px; display: grid; place-items: center;
+    background: rgba(212,180,124,.1); color: var(--gold); margin-bottom: 18px;
+  }
+  .card .ic svg { width: 20px; height: 20px; }
+  .card h3 { margin: 0; font-size: 17px; font-weight: 600; }
+  .card p { margin: 8px 0 0; color: var(--muted); font-size: 15px; }
+
+  .split { display: grid; grid-template-columns: 1fr 1.5fr; gap: 64px; align-items: center; }
+  .split.rev { grid-template-columns: 1.5fr 1fr; }
+  .split.rev .text { order: 2; }
+  .split .shot { margin: 0; }
+  .ticks { list-style: none; padding: 0; margin: 26px 0 0; }
+  .ticks li { position: relative; padding-left: 28px; margin: 10px 0; color: #d4d4d4; }
+  .ticks li::before {
+    content: ""; position: absolute; left: 0; top: 7px; width: 16px; height: 10px;
+    border-left: 2px solid var(--gold); border-bottom: 2px solid var(--gold); transform: rotate(-45deg) scale(.8);
+  }
+
+  .band { background: linear-gradient(180deg, var(--bg-2), var(--bg)); border-top: 1px solid #1a1a1a; border-bottom: 1px solid #1a1a1a; }
+  .formats { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 26px; }
+  .pill { padding: 8px 14px; border-radius: 999px; background: #181818; border: 1px solid #262626; font-size: 14px; color: #d4d4d4; }
+
+  .support {
+    text-align: center; padding: 64px 32px; border-radius: 24px;
+    background: radial-gradient(600px 240px at 50% 0%, rgba(212,180,124,.14), transparent), var(--panel);
+    border: 1px solid rgba(212,180,124,.18);
+  }
+  .support .sub { margin-left: auto; margin-right: auto; }
+
+  .faq { max-width: 780px; margin: 44px auto 0; }
+  details { border-bottom: 1px solid var(--line); padding: 20px 0; }
+  summary { cursor: pointer; list-style: none; font-weight: 600; font-size: 17px; display: flex; justify-content: space-between; gap: 16px; }
+  summary::-webkit-details-marker { display: none; }
+  summary::after { content: "+"; color: var(--gold); font-weight: 400; font-size: 22px; line-height: 1; }
+  details[open] summary::after { content: "–"; }
+  details p { margin: 12px 0 0; color: var(--muted); }
+
+  footer { padding: 48px 0 60px; border-top: 1px solid #1a1a1a; color: var(--faint); font-size: 14px; }
+  footer .wrap { display: flex; gap: 24px; flex-wrap: wrap; align-items: center; }
+  footer nav { margin-left: auto; display: flex; gap: 20px; }
+  footer a { text-decoration: none; }
+  footer a:hover { color: var(--text); }
+  .disclaimer { margin-top: 18px; width: 100%; font-size: 13px; color: #5c5c5c; }
+
+  @media (max-width: 900px) {
+    .grid { grid-template-columns: 1fr 1fr; }
+    .split, .split.rev { grid-template-columns: 1fr; gap: 36px; }
+    .split.rev .text { order: 0; }
+    .nav-links { display: none; }
+    header.nav .btn { margin-left: auto; }
+  }
+  @media (max-width: 600px) {
+    .grid { grid-template-columns: 1fr; }
+    .hero { padding-top: 64px; }
+    section { padding: 76px 0; }
+    .shot .bar { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <div class="wrap">
+    <a class="brand" href="#"><img src="assets/icon.svg" alt="">Tenvy</a>
+    <nav class="nav-links">
+      <a href="#features">Features</a>
+      <a href="#library">Library</a>
+      <a href="#free">Free</a>
+      <a href="#faq">FAQ</a>
+    </nav>
+    <a class="btn btn-gold btn-sm js-download" href="https://github.com/quph4/tenvy-releases/releases/latest">Download</a>
+  </div>
+</header>
+
+<main>
+  <div class="hero">
+    <div class="glow"></div>
+    <div class="wrap" style="position:relative">
+      <span class="eyebrow">IPTV player for Windows · Free</span>
+      <h1>Your IPTV, <em>beautifully</em> organised.</h1>
+      <p class="lede">Tenvy is a fast, modern player for the IPTV subscription you already have. Live TV with a real programme guide and catch-up, movies and series with artwork — all in one calm, quick app.</p>
+      <div class="cta">
+        <a class="btn btn-gold js-download" href="https://github.com/quph4/tenvy-releases/releases/latest">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 5.5 10.5 4.4v7.1H3V5.5Zm0 13 7.5 1.1v-7H3v5.9Zm8.5 1.3L21 21.2V12.6h-9.5v7.2Zm0-15.6v7.3H21V2.8l-9.5 1.4Z"/></svg>
+          <span class="js-download-label">Download for Windows</span>
+        </a>
+        <a class="btn btn-ghost" href="#features">See what it does</a>
+      </div>
+      <p class="cta-note js-download-note">Windows 10 and 11 · No admin rights needed · Updates itself</p>
+
+      <div class="shot">
+        <div class="bar"><i></i><i></i><i></i></div>
+        <img src="assets/guide.webp" width="2880" height="1800" alt="Tenvy's programme guide with live channels and what's on now">
+      </div>
+    </div>
+  </div>
+
+  <section id="features">
+    <div class="wrap">
+      <div class="kicker">Features</div>
+      <h2>Everything you watch, in one place.</h2>
+      <p class="sub">Built for big playlists and real evenings in front of the TV — not for fiddling with settings.</p>
+
+      <div class="grid">
+        <div class="card">
+          <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 10h18M9 4v16"/></svg></div>
+          <h3>A proper TV guide</h3>
+          <p>See what's on across every channel, a week back and forward, and jump straight in.</p>
+        </div>
+        <div class="card">
+          <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5M12 7v5l3 2"/></svg></div>
+          <h3>Catch-up &amp; start over</h3>
+          <p>Missed the start? Watch from the beginning, or play programmes that already aired.*</p>
+        </div>
+        <div class="card">
+          <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="2.5"/><path d="M7 2v20M17 2v20M2 12h20M2 7h5M2 17h5M17 17h5M17 7h5"/></svg></div>
+          <h3>Movies &amp; series</h3>
+          <p>A poster library with ratings, plots and trailers. Seasons and episodes, with "continue watching".</p>
+        </div>
+        <div class="card">
+          <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg></div>
+          <h3>Instant search</h3>
+          <p>Ctrl+K finds any channel, film or show across tens of thousands of titles — as you type.</p>
+        </div>
+        <div class="card">
+          <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg></div>
+          <h3>Reminders</h3>
+          <p>"Remind me" on the match tonight. Tenvy taps you on the shoulder a minute before kick-off.</p>
+        </div>
+        <div class="card">
+          <div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><rect x="12" y="12" width="7" height="5" rx="1"/></svg></div>
+          <h3>Mini player</h3>
+          <p>Keep the game in a small always-on-top window while you work. Press P.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="library" class="band">
+    <div class="wrap split">
+      <div class="text">
+        <div class="kicker">Library</div>
+        <h2>Your films and shows, finally browsable.</h2>
+        <p class="sub">Tenvy turns a provider's long lists into a library you actually want to scroll.</p>
+        <ul class="ticks">
+          <li>Posters, ratings, year and plot</li>
+          <li>Sort by newest, rating or name</li>
+          <li>Resume where you left off</li>
+          <li>Favorites and watch history</li>
+        </ul>
+      </div>
+      <div class="shot"><img src="assets/movies.webp" width="2880" height="1800" alt="The movie library with posters and ratings" loading="lazy"></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap split rev">
+      <div class="text">
+        <div class="kicker">Series</div>
+        <h2>Next episode, one click away.</h2>
+        <p class="sub">Seasons and episodes laid out properly, with the next one you haven't seen ready to play.</p>
+        <ul class="ticks">
+          <li>Episodes load as you open a show</li>
+          <li>Progress per episode</li>
+          <li>Plays in a full-width player</li>
+        </ul>
+      </div>
+      <div class="shot"><img src="assets/show.webp" width="2880" height="1800" alt="A series page with seasons and episodes" loading="lazy"></div>
+    </div>
+  </section>
+
+  <section class="band">
+    <div class="wrap split">
+      <div class="text">
+        <div class="kicker">Getting started</div>
+        <h2>Connected in under a minute.</h2>
+        <p class="sub">Paste the link or login your IPTV provider gave you. Tenvy fills in the rest and imports channels, films, series and the guide.</p>
+        <div class="formats">
+          <span class="pill">Xtream Codes</span>
+          <span class="pill">M3U / M3U8</span>
+          <span class="pill">XMLTV guides</span>
+          <span class="pill">HEVC · 4K · AC-3</span>
+        </div>
+      </div>
+      <div class="shot"><img src="assets/welcome.webp" width="2880" height="1800" alt="Tenvy's welcome screen for connecting a provider" loading="lazy"></div>
+    </div>
+  </section>
+
+  <section id="free">
+    <div class="wrap">
+      <div class="support">
+        <div class="kicker">Free</div>
+        <h2>Free to download. Free to use.</h2>
+        <p class="sub">No account, no ads, no tracking. If Tenvy becomes part of your evenings and you'd like to help it keep getting better, you can support its development.</p>
+        <div class="cta">
+          <a class="btn btn-gold js-download" href="https://github.com/quph4/tenvy-releases/releases/latest">Download Tenvy</a>
+          <a class="btn btn-ghost js-support" href="#" hidden>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.5-1.5 3-3.2 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.8 0-3 .5-4.5 2-1.5-1.5-2.7-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4 3 5.5l7 7Z"/></svg>
+            <span class="js-support-label">Support Tenvy</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="faq" style="padding-top:0">
+    <div class="wrap">
+      <div style="text-align:center">
+        <div class="kicker">FAQ</div>
+        <h2>Questions</h2>
+      </div>
+      <div class="faq">
+        <details>
+          <summary>Does Tenvy include any channels?</summary>
+          <p>No. Tenvy is a player only — it doesn't include, sell or link to any channels, films or series. You sign in with the details from your own IPTV provider.</p>
+        </details>
+        <details>
+          <summary>What do I need?</summary>
+          <p>A Windows 10 or 11 PC and an IPTV subscription that gives you an Xtream Codes login (server, username, password) or an M3U playlist link.</p>
+        </details>
+        <details>
+          <summary>Is it really free?</summary>
+          <p>Yes. There are no ads and no account. If you like it, you're welcome to support development — entirely optional.</p>
+        </details>
+        <details>
+          <summary>Windows says "Windows protected your PC". Is that safe?</summary>
+          <p>That message appears for new apps that haven't yet built up a reputation with Microsoft. Click <b>More info</b> → <b>Run anyway</b>. Only download Tenvy from this page.</p>
+        </details>
+        <details>
+          <summary>How do updates work?</summary>
+          <p>Tenvy checks for new versions on its own and installs them with one click. Every update is cryptographically signed.</p>
+        </details>
+        <details>
+          <summary>What about my privacy?</summary>
+          <p>Your provider login stays on your PC. Tenvy talks to your provider to play and list content, and to this site to check for updates and settings. There are no accounts, analytics or ads.</p>
+        </details>
+        <details>
+          <summary>Does catch-up work on every channel?</summary>
+          <p>*Catch-up depends on your provider. Channels your provider archives get a catch-up marker in the guide.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <a class="brand" href="#"><img src="assets/icon.svg" alt="" style="width:24px;height:24px">Tenvy</a>
+    <span>© 2026 Tenvy</span>
+    <nav>
+      <a href="https://github.com/quph4/tenvy-releases/releases">Releases</a>
+      <a href="#faq">FAQ</a>
+      <a class="js-support" href="#" hidden>Support</a>
+    </nav>
+    <p class="disclaimer">Tenvy is a media player and does not provide any content. Use it only with services and streams you have the right to watch.</p>
+  </div>
+</footer>
+
+<script>
+  // Point the download buttons straight at the installer of the latest
+  // release; before the first release, say it's coming.
+  fetch('https://api.github.com/repos/quph4/tenvy-releases/releases/latest')
+    .then(function (r) { if (!r.ok) throw r.status; return r.json() })
+    .then(function (rel) {
+      var exe = (rel.assets || []).find(function (a) { return /-setup\.exe$/i.test(a.name) })
+      var version = String(rel.tag_name || '').replace(/^v/, '')
+      document.querySelectorAll('.js-download').forEach(function (a) { if (exe) a.href = exe.browser_download_url })
+      var note = document.querySelector('.js-download-note')
+      if (note && version) note.textContent = 'Version ' + version + ' · Windows 10 and 11 · No admin rights needed · Updates itself'
+    })
+    .catch(function (status) {
+      if (status !== 404) return
+      document.querySelectorAll('.js-download-label').forEach(function (s) { s.textContent = 'Coming soon' })
+      var note = document.querySelector('.js-download-note')
+      if (note) note.textContent = 'The first public version is on its way.'
+    })
+
+  // The support link comes from the same config the app reads.
+  fetch('config.json', { cache: 'no-cache' })
+    .then(function (r) { return r.json() })
+    .then(function (cfg) {
+      var s = cfg && cfg.support
+      if (!s || !/^https:\/\//.test(s.url)) return
+      document.querySelectorAll('.js-support').forEach(function (a) {
+        a.href = s.url
+        a.target = '_blank'
+        a.rel = 'noopener'
+        a.hidden = false
+      })
+      if (s.label) document.querySelectorAll('.js-support-label').forEach(function (e) { e.textContent = s.label })
+    })
+    .catch(function () {})
+</script>
+</body>
+</html>
