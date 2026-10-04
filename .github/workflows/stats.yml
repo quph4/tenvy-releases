@@ -48,6 +48,7 @@ jobs:
                       installs += a["download_count"]
                       per_version[r["tag_name"]] = a["download_count"]
 
+          os.makedirs("stats", exist_ok=True)
           path = "stats/downloads.csv"
           rows = []
           if os.path.exists(path):
