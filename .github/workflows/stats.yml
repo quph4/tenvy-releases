@@ -1,0 +1,79 @@
+# Once a day, record GitHub's download counters for the releases here, as a
+# rough usage signal without collecting anything from users:
+#
+# - update_checks: every running Tenvy fetches latest.json at start and
+#   every 6 hours, so checks per day ≈ apps in use that day (an app that
+#   runs all evening counts 2–4 times).
+# - installer_downloads: new installs plus downloads made by updates.
+#
+# Results: stats/downloads.csv (one row per day; *_today = since yesterday).
+name: stats
+
+on:
+  schedule:
+    - cron: '55 23 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  record:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Record download counts
+        env:
+          GH_TOKEN: ${{ github.token }}
+          REPO: ${{ github.repository }}
+        run: |
+          python3 - <<'PY'
+          import csv, datetime, json, os, urllib.request
+
+          req = urllib.request.Request(
+              f"https://api.github.com/repos/{os.environ['REPO']}/releases?per_page=100",
+              headers={"Authorization": f"Bearer {os.environ['GH_TOKEN']}", "Accept": "application/vnd.github+json"},
+          )
+          releases = json.load(urllib.request.urlopen(req))
+          checks = installs = 0
+          per_version = {}
+          for r in releases:
+              if r["draft"]:
+                  continue
+              for a in r["assets"]:
+                  if a["name"] == "latest.json":
+                      checks += a["download_count"]
+                  elif a["name"].endswith("-setup.exe"):
+                      installs += a["download_count"]
+                      per_version[r["tag_name"]] = a["download_count"]
+
+          path = "stats/downloads.csv"
+          rows = []
+          if os.path.exists(path):
+              with open(path, newline="") as f:
+                  rows = list(csv.DictReader(f))
+          prev = rows[-1] if rows else {"update_checks": checks, "installer_downloads": installs}
+          today = datetime.date.today().isoformat()
+          rows = [r for r in rows if r["date"] != today]
+          rows.append({
+              "date": today,
+              "update_checks": checks,
+              "update_checks_today": checks - int(prev["update_checks"]),
+              "installer_downloads": installs,
+              "installer_downloads_today": installs - int(prev["installer_downloads"]),
+              "per_version": " ".join(f"{k}={v}" for k, v in sorted(per_version.items())),
+          })
+          with open(path, "w", newline="") as f:
+              w = csv.DictWriter(f, fieldnames=list(rows[-1].keys()))
+              w.writeheader()
+              w.writerows(rows)
+          print(rows[-1])
+          PY
+
+      - name: Save
+        run: |
+          git config user.name "tenvy-stats"
+          git config user.email "actions@users.noreply.github.com"
+          git add stats/downloads.csv
+          git diff --cached --quiet || (git commit -m "Stats $(date -u +%F)" && git push)
