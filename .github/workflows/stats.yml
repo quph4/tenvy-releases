@@ -54,9 +54,9 @@ jobs:
           if os.path.exists(path):
               with open(path, newline="") as f:
                   rows = list(csv.DictReader(f))
-          prev = rows[-1] if rows else {"update_checks": checks, "installer_downloads": installs}
           today = datetime.date.today().isoformat()
-          rows = [r for r in rows if r["date"] != today]
+          rows = [r for r in rows if r["date"] != today]  # a rerun replaces today's row
+          prev = rows[-1] if rows else {"update_checks": checks, "installer_downloads": installs}
           rows.append({
               "date": today,
               "update_checks": checks,
