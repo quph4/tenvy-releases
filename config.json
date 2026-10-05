@@ -1,6 +1,10 @@
 {
   "model": "free",
-  "support": null,
+  "support": {
+    "url": "https://ko-fi.com/tenvy96627",
+    "label": "Support Tenvy",
+    "message": "Tenvy is free, with no ads and no account. If you enjoy it, a small tip helps keep it improving."
+  },
   "supportPrompt": { "afterDays": 7, "everyDays": 45 },
   "announcements": []
 }
