@@ -44,6 +44,8 @@ Windows 10 and 11, 64-bit.
 
 ## Free
 
+Questions, ideas or problems? Join the [Tenvy Discord](https://discord.gg/bXYCSw2ws).
+
 Tenvy is free, with no account, ads or tracking. If you enjoy it, you can support its development from the app (Settings → About) or the website.
 
 ---

@@ -415,6 +415,10 @@
           <p>Your provider login stays on your PC. Tenvy talks to your provider to play and list content, and to this site to check for updates and settings. There are no accounts, analytics or ads. <a href="privacy.html" style="color:var(--gold)">Read the privacy policy</a>.</p>
         </details>
         <details>
+          <summary>Where can I ask a question or suggest something?</summary>
+          <p>In the <a class="js-community" href="https://github.com/quph4/tenvy-releases/issues" style="color:var(--gold)">Tenvy community on Discord</a> — questions, ideas and problems are all welcome, and new versions are announced there. Please don't share or ask for providers or stream links.</p>
+        </details>
+        <details>
           <summary>Does catch-up work on every channel?</summary>
           <p>*Catch-up depends on your provider. Channels your provider archives get a catch-up marker in the guide.</p>
         </details>
@@ -431,6 +435,7 @@
       <a href="https://github.com/quph4/tenvy-releases/releases">Releases</a>
       <a href="#faq">FAQ</a>
       <a href="privacy.html">Privacy</a>
+      <a class="js-community" href="#" hidden>Discord</a>
       <a class="js-support" href="#" hidden>Support</a>
     </nav>
     <p class="disclaimer">Tenvy is a media player and does not provide any content. Use it only with services and streams you have the right to watch.</p>
@@ -469,6 +474,21 @@
         a.hidden = false
       })
       if (s.label) document.querySelectorAll('.js-support-label').forEach(function (e) { e.textContent = s.label })
+    })
+    .catch(function () {})
+
+  // So does the community (Discord) link.
+  fetch('config.json', { cache: 'no-cache' })
+    .then(function (r) { return r.json() })
+    .then(function (cfg) {
+      var c = cfg && cfg.community
+      if (!c || !/^https:\/\//.test(c.url)) return
+      document.querySelectorAll('.js-community').forEach(function (a) {
+        a.href = c.url
+        a.target = '_blank'
+        a.rel = 'noopener'
+        a.hidden = false
+      })
     })
     .catch(function () {})
 </script>
