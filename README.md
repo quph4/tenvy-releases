@@ -10,7 +10,9 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/quph4/tenvy-releases/releases/latest"><b>⬇ Download for Windows</b></a>
+  <a href="https://apps.microsoft.com/detail/9PMCC6XN52D2?mode=direct"><b>Get it from Microsoft Store</b></a>
+  &nbsp;·&nbsp;
+  <a href="https://github.com/quph4/tenvy-releases/releases/latest">⬇ Download installer</a>
   &nbsp;·&nbsp;
   <a href="https://quph4.github.io/tenvy-releases/">Website</a>
 </p>
@@ -35,10 +37,15 @@ Works with **Xtream Codes** logins, **M3U/M3U8** playlists and **XMLTV** guides.
 
 ## Install
 
+**Microsoft Store (recommended):** [Tenvy IPTV Player](https://apps.microsoft.com/detail/9PMCC6XN52D2?mode=direct) — one click, and the Store keeps it updated.
+
+**Or the installer:**
+
 1. [Download the latest version](https://github.com/quph4/tenvy-releases/releases/latest) — `Tenvy_<version>_x64-setup.exe`.
 2. Run it. No admin rights needed.
 3. If Windows shows *"Windows protected your PC"*, click **More info → Run anyway**. (New apps get this until they've built up a reputation with Microsoft.)
-4. Paste the login or link from your IPTV provider.
+
+Then paste the login or link from your IPTV provider.
 
 Windows 10 and 11, 64-bit.
 

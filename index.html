@@ -184,7 +184,7 @@
       <a href="#free">Free</a>
       <a href="#faq">FAQ</a>
     </nav>
-    <a class="btn btn-gold btn-sm js-download" href="https://github.com/quph4/tenvy-releases/releases/latest">Download</a>
+    <a class="btn btn-gold btn-sm" href="https://apps.microsoft.com/detail/9PMCC6XN52D2?mode=direct">Get Tenvy</a>
   </div>
 </header>
 
@@ -196,16 +196,20 @@
       <h1>Your IPTV, <em>beautifully</em> organised.</h1>
       <p class="lede">Tenvy is a fast, modern player for the IPTV subscription you already have. Live TV with a real programme guide and catch-up, movies and series with artwork — all in one calm, quick app.</p>
       <div class="cta">
-        <a class="btn btn-gold js-download" href="https://github.com/quph4/tenvy-releases/releases/latest">
+        <a class="btn btn-gold" href="https://apps.microsoft.com/detail/9PMCC6XN52D2?mode=direct">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 3h8a2 2 0 0 1 2 2v1h2a1 1 0 0 1 1 1v12a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7a1 1 0 0 1 1-1h2V5a2 2 0 0 1 2-2Zm0 3h8V5H8v1Zm1.5 4v3.2h3.2V10H9.5Zm4.3 0v3.2H17V10h-3.2Zm-4.3 4.3v3.2h3.2v-3.2H9.5Zm4.3 0v3.2H17v-3.2h-3.2Z"/></svg>
+          Get it from Microsoft Store
+        </a>
+        <a class="btn btn-ghost js-download" href="https://github.com/quph4/tenvy-releases/releases/latest">
           <svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 5.5 10.5 4.4v7.1H3V5.5Zm0 13 7.5 1.1v-7H3v5.9Zm8.5 1.3L21 21.2V12.6h-9.5v7.2Zm0-15.6v7.3H21V2.8l-9.5 1.4Z"/></svg>
-          <span class="js-download-label">Download for Windows</span>
+          <span class="js-download-label">Download installer</span>
         </a>
         <a class="btn btn-ghost" href="#demo">
           <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13l11-6.5z"/></svg>
           Watch the demo
         </a>
       </div>
-      <p class="cta-note js-download-note">Windows 10 and 11 · No admin rights needed · Updates itself</p>
+      <p class="cta-note js-download-note">Windows 10 and 11 · Microsoft Store or installer · Updates itself</p>
 
       <div class="shot">
         <div class="bar"><i></i><i></i><i></i></div>
@@ -373,7 +377,8 @@
         <h2>Free to download. Free to use.</h2>
         <p class="sub">No account, no ads, no tracking. If Tenvy becomes part of your evenings and you'd like to help it keep getting better, you can support its development.</p>
         <div class="cta">
-          <a class="btn btn-gold js-download" href="https://github.com/quph4/tenvy-releases/releases/latest">Download Tenvy</a>
+          <a class="btn btn-gold" href="https://apps.microsoft.com/detail/9PMCC6XN52D2?mode=direct">Get it from Microsoft Store</a>
+          <a class="btn btn-ghost js-download" href="https://github.com/quph4/tenvy-releases/releases/latest">Download installer</a>
           <a class="btn btn-ghost js-support" href="#" hidden>
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 14c1.5-1.5 3-3.2 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.8 0-3 .5-4.5 2-1.5-1.5-2.7-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4 3 5.5l7 7Z"/></svg>
             <span class="js-support-label">Support Tenvy</span>
@@ -404,7 +409,7 @@
         </details>
         <details>
           <summary>Windows says "Windows protected your PC". Is that safe?</summary>
-          <p>That message appears for new apps that haven't yet built up a reputation with Microsoft. Click <b>More info</b> → <b>Run anyway</b>. Only download Tenvy from this page.</p>
+          <p>That message appears for new apps that haven't yet built up a reputation with Microsoft. Get Tenvy from the <a href="https://apps.microsoft.com/detail/9PMCC6XN52D2?mode=direct" style="color:var(--gold)">Microsoft Store</a> to skip it — the Store checks and signs the app. With the installer from this page, click <b>More info</b> → <b>Run anyway</b>. Only download Tenvy from this page or the Store.</p>
         </details>
         <details>
           <summary>How do updates work?</summary>
@@ -452,7 +457,7 @@
       var version = String(rel.tag_name || '').replace(/^v/, '')
       document.querySelectorAll('.js-download').forEach(function (a) { if (exe) a.href = exe.browser_download_url })
       var note = document.querySelector('.js-download-note')
-      if (note && version) note.textContent = 'Version ' + version + ' · Windows 10 and 11 · No admin rights needed · Updates itself'
+      if (note && version) note.textContent = 'Version ' + version + ' · Windows 10 and 11 · Microsoft Store or installer · Updates itself'
     })
     .catch(function (status) {
       if (status !== 404) return
