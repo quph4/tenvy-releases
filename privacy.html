@@ -36,13 +36,13 @@
 <main>
   <div class="wrap">
     <h1>Privacy</h1>
-    <div class="date">Last updated 3 October 2026</div>
+    <div class="date">Last updated 9 November 2026</div>
 
     <div class="summary">
       <ul>
         <li>Tenvy has no accounts, no analytics, no tracking and no ads.</li>
-        <li>Your provider login, channels and history are stored only on your PC.</li>
-        <li>Tenvy only talks to your IPTV provider and to this website (for updates and settings).</li>
+        <li>Your provider login, channels and history are stored only on your PC or TV.</li>
+        <li>The Windows app only talks to your IPTV provider and to this website (for updates and settings). The LG TV app also asks Tenvy's licence server whether the TV is paid for.</li>
       </ul>
     </div>
 
@@ -66,14 +66,26 @@
     <h2>Notifications</h2>
     <p>Reminders are shown as Windows notifications, created on your PC. Nothing is sent anywhere.</p>
 
+    <h2>Tenvy on LG TVs</h2>
+    <p>The TV app keeps your provider login, lists, favorites, history and settings on the TV. None of it is sent to us.</p>
+    <p>The TV app is free for 14 days, then paid for once per TV. To know whether the TV is paid for, the app sends the TV's device ID to Tenvy's licence server at tenvy.pages.dev, run on Cloudflare, when it starts and every six hours. The server keeps:</p>
+    <ul>
+      <li>a SHA-256 hash of the device ID, not the ID itself;</li>
+      <li>the code the TV shows, and when its free trial started;</li>
+      <li>when the TV was paid for, and the PayPal payment or gift code that paid for it.</li>
+    </ul>
+    <p>Nothing about what you watch is sent. Like any web request, it reveals the TV's IP address to Cloudflare. Cloudflare's <a href="https://www.cloudflare.com/privacypolicy/">privacy policy</a> applies.</p>
+    <p>You pay on PayPal's own pages, and we never see your card or account details. As with any PayPal payment, PayPal tells us the payer's name, email address and country; they stay in our PayPal account for bookkeeping and refunds. PayPal's <a href="https://www.paypal.com/myaccount/privacy/privacyhub">privacy statement</a> applies.</p>
+
     <h2>This website</h2>
     <p>This site is hosted on GitHub Pages and uses fonts from Google Fonts. It sets no cookies of its own and has no analytics. GitHub and Google may process technical data such as IP addresses to deliver the pages.</p>
 
     <h2>Removing your data</h2>
     <p>Remove a provider in Settings to delete its lists and history. To remove everything, uninstall Tenvy and delete the <code>%APPDATA%\app.tenvy.player</code> folder.</p>
+    <p>On a TV, uninstalling Tenvy removes everything it keeps there. The licence server keeps the TV's record so that a paid TV stays paid. To have it removed, contact us with the code the TV shows.</p>
 
     <h2>Changes and contact</h2>
-    <p>If this policy changes, the new version is published on this page with a new date. Questions: <a href="https://github.com/quph4/tenvy-releases/issues">github.com/quph4/tenvy-releases/issues</a>.</p>
+    <p>If this policy changes, the new version is published on this page with a new date. Questions: <a href="mailto:tenvyiptv@outlook.com">tenvyiptv@outlook.com</a> or <a href="https://github.com/quph4/tenvy-releases/issues">github.com/quph4/tenvy-releases/issues</a>.</p>
   </div>
 </main>
 <footer><div class="wrap">© 2026 Tenvy · <a href="./">Home</a></div></footer>
