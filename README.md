@@ -53,7 +53,7 @@ Windows 10 and 11, 64-bit.
 
 Questions, ideas or problems? Join the [Tenvy Discord](https://discord.gg/WxShS8pgzR).
 
-Tenvy is free and open source ([source code](https://github.com/quph4/tenvy), GNU GPL v3), with no account, ads or tracking. If you enjoy it, you can support its development from the app (Settings → About) or the website.
+Tenvy is free, with no account, ads or tracking. If you enjoy it, you can support its development from the app (Settings → About) or the website.
 
 ---
 

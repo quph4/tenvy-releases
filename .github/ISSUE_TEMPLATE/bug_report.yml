@@ -1,0 +1,66 @@
+name: Bug report
+description: Something in Tenvy doesn't work as it should.
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reporting! **Never post your provider's address, username or password** — not in the text and not in screenshots.
+  - type: input
+    id: version
+    attributes:
+      label: Tenvy version
+      description: Bottom-right corner of the app, e.g. 0.1.4.
+    validations:
+      required: true
+  - type: dropdown
+    id: from
+    attributes:
+      label: Installed from
+      options:
+        - Microsoft Store
+        - Installer from the website
+    validations:
+      required: true
+  - type: dropdown
+    id: source
+    attributes:
+      label: How you connect
+      options:
+        - Xtream Codes login
+        - M3U playlist link or file
+        - Not related to a provider
+    validations:
+      required: true
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened, and what did you expect?
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to make it happen
+      placeholder: |
+        1. Open the guide
+        2. Click a programme from yesterday
+        3. ...
+  - type: textarea
+    id: diagnostics
+    attributes:
+      label: Diagnostics
+      description: Settings → About → Copy diagnostics, then paste here. Logins and addresses are removed automatically.
+      render: text
+  - type: input
+    id: windows
+    attributes:
+      label: Windows version
+      placeholder: Windows 11 24H2
+  - type: checkboxes
+    id: private
+    attributes:
+      label: Privacy
+      options:
+        - label: I haven't included my provider's address, username or password.
+          required: true

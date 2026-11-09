@@ -1,0 +1,8 @@
+blank_issues_enabled: true
+contact_links:
+  - name: Questions and help
+    url: https://discord.gg/WxShS8pgzR
+    about: Ask on the Tenvy Discord — the quickest way to get help.
+  - name: Security problem
+    url: https://discord.gg/WxShS8pgzR
+    about: Please don't post it here. Message the developer privately on Discord.

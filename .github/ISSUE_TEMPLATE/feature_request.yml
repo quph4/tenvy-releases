@@ -1,0 +1,18 @@
+name: Idea or feature request
+description: Something Tenvy should do.
+labels: [idea]
+body:
+  - type: textarea
+    id: idea
+    attributes:
+      label: What would you like Tenvy to do?
+    validations:
+      required: true
+  - type: textarea
+    id: why
+    attributes:
+      label: Why — what are you trying to do?
+      description: The situation behind the idea helps find the best way to build it.
+  - type: markdown
+    attributes:
+      value: Tenvy is a player only, so ideas that involve providing channels or playlists are out of scope.
